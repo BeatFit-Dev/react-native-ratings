@@ -11,6 +11,8 @@ export default class TapRating extends Component {
   static defaultProps = {
     defaultRating: 3,
     reviews: ["Terrible", "Bad", "Okay", "Good", "Great"],
+    defaultReview: "",
+    defaultReviewColor: "rgba{255, 255, 255, 1}",
     count: 5,
     showRating: true,
     reviewColor: 'rgba(230, 196, 46, 1)',
@@ -59,9 +61,23 @@ export default class TapRating extends Component {
 
   render() {
     const { position } = this.state
-    const { count, reviews, showRating, reviewColor, reviewSize } = this.props
+    const {
+      count,
+      reviews,
+      showRating,
+      reviewColor,
+      reviewSize,
+      defaultReview,
+      defaultReviewColor
+    } = this.props
     const rating_array = []
     const starContainerStyle = [styles.starContainer]
+    const reviewsWithDefault = [defaultReview, ...reviews]
+    const reviewTextStyle = [
+      styles.reviewText,
+      { fontSize: reviewSize },
+      { color: position === 0 ? defaultReviewColor : reviewColor }
+    ]
 
     if (this.props.starContainerStyle) {
         starContainerStyle.push(this.props.starContainerStyle);
@@ -82,8 +98,8 @@ export default class TapRating extends Component {
     return (
       <View style={styles.ratingContainer}>
         { showRating &&
-          <Text style={[styles.reviewText, {fontSize: reviewSize, color: reviewColor}]}>
-            {reviews[position - 1]}
+          <Text style={reviewTextStyle}>
+            {reviewsWithDefault[position]}
           </Text>
         }
         <View style={starContainerStyle}>
