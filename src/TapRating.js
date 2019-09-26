@@ -12,7 +12,7 @@ export default class TapRating extends Component {
     defaultRating: 3,
     reviews: ["Terrible", "Bad", "Okay", "Good", "Great"],
     defaultReview: "",
-    defaultReviewColor: "rgba{255, 255, 255, 1}",
+    defaultReviewColor: "black",
     count: 5,
     showRating: true,
     reviewColor: 'rgba(230, 196, 46, 1)',
